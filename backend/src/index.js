@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use("/api/auth", authRoutes); // basically if we want to visit any routes from authRoutes, we have to add /api/auth in the address
+app.use("/api/auth", authRoutes); // basically if we want to visit any authentication routes (login or register), we have to add /api/auth in the address
+
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);

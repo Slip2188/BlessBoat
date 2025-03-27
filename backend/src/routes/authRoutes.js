@@ -24,11 +24,12 @@ router.post("/register", async(req, res) => {
             return res.status(400).json({message: "This User already exists"});
         } 
 
-        const user = new user ({username, email, password})
-        await user.save()
+        const user = new User({username, email, password});
+        await user.save();
 
+        // Used to identify individual users on a phone
         const token = generateToken(user._id)
-        res.status(201).json({token, user:{_id: user._id, username: user._username, email: user.email}})
+        res.status(201).json({token, user:{_id: user._id, username: user.username, email: user.email}})
 
     } catch (error) {
         console.log("Error in the registeration route", error);
@@ -37,7 +38,26 @@ router.post("/register", async(req, res) => {
 });
 
 router.post("/login", async(req, res) => {
-    res.send("login");
+    try {
+        const {email, password} = req.body;
+        if (!email || !password) {
+            return res.status(400).json({message: "All Fields required!"});
+        } 
+
+        // Checking if user exists and password is correct
+        const user = await User.findOne({email});
+        const isPasswordCorrect = await user.comparePassword(password);
+        if (!isPasswordCorrect || !user){
+            return res.status(400).json({message:"Invalid Credentials"});
+        }
+
+        const token = generateToken(user._id)
+        res.status(201).json({token, user:{_id: user._id, username: user.username, email: user.email}})
+
+    } catch (error) {
+        console.log("Error in login Route!", error)
+        res.status(500).json({message:"Internal Server Error"})
+    }
 });
 
 export default router;
