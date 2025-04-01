@@ -1,37 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const entrySchema = new mongoose.Schema(
-    {
-        title: {
-            type: String, 
-            required: true
-        },
-        body: {
-            type: String,
-            required: true
-        },
-        sentiment: {
-            type: Number,
-            min: 0,
-            max: 1
-        }
-    },
-    {
-        timestamps: true
-    }
-)
-
-const journalSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String, 
-            required: true
-        },
-        entries: [entrySchema]
-    }
-)
-
 const userSchema = new mongoose.Schema(
     {
         username : {
@@ -48,8 +17,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             requied: true, 
             minlength: 6,
-        },
-        journals: [journalSchema]
+        }
     }, 
     {
         timestamps: true

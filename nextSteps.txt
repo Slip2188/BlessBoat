@@ -1,0 +1,3 @@
+1. Learn How to update a nested array in a document form the latest bookmarked article and implement it to add entries to a journal 
+   (also check if protectRoute is needed for adding a new entry)
+2. Watch the video to retrieve the journals (and figure out a way to retieve the entries associated with a journal)
