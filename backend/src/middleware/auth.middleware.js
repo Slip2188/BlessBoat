@@ -27,7 +27,7 @@ const protectRoute = async (req, res, next) => {
             return res.status(401).json({message: "Your token is invalid"})
         }
 
-        req.user = user; // sets the user to the user found so that all attributes of the user can be accessed in the next function 
+        req.user = user; // sets the user to the user found so that all attributes of the user can be accessed in the next function i.e router.post('/',...) in journalRoutes.js
         next(); // calls the next function (i.e. the async function in entryRoutes.js)
 
     } catch (error) {
