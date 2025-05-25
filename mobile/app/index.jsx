@@ -7,15 +7,16 @@ export default function LandingScreen() {
   return (
     <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
       <Text>Lolo</Text>
-      <Text><Link href="./(auth)/login">Login</Link></Text>
+      <Text><Link href="./journals">Journals</Link></Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: "#000"
+  },
 });
