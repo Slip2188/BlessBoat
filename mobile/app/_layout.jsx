@@ -10,6 +10,7 @@ export default function RootLayout() {
               <Stack screenOptions={{headerShown: false}}>
                 <Stack.Screen name="index" />
                 <Stack.Screen name="journals"/>
+                <Stack.Screen name="journal-menu"/>
               </Stack>
             </SafeAreaProvider>
           

@@ -4,8 +4,8 @@ import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../assets/styles/colors";
 import Logo from "../components/svgs/Logo";
-import Flowerpot from "../components/svgs/flowerpot";
-import Bookend from "../components/svgs/bookend";
+import Flowerpot from "../components/svgs/journals/flowerpot";
+import Bookend from "../components/svgs/journals/bookend";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
@@ -14,7 +14,7 @@ SplashScreen.preventAutoHideAsync();
 
 const flowerpotSizeRatio = 2.5
 
-const journals = ["daily", "ritika", "shaurya", "work", "igloo", "pinga"]
+const journals = ["daily", "ritika", "work", "igloo", "pinga"]
 const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.teal2], [COLOR.cherry1, COLOR.cherry2], [COLOR.grayblue1, COLOR.grayblue2], [COLOR.blue1, COLOR.blue2]]
 
 export default function JournalScreen() {
@@ -22,7 +22,7 @@ export default function JournalScreen() {
 
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
+    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -48,18 +48,20 @@ export default function JournalScreen() {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
           {journals.map((name, nameIndex)=>(
-            <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]} key={nameIndex}>
-                <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
-                  <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>
-                  <View style={styles.journaltitlecontainer}>
-                    {name.split('').map((letter, letterIndex) => (
-                      <Text key={letterIndex} style={styles.journaltitle}>
-                        {letter}
-                      </Text>
-                    ))}
+            <Link href="./journal-menu"  key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
+              <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
+                  <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
+                    <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>
+                    <View style={styles.journaltitlecontainer}>
+                      {name.split('').map((letter, letterIndex) => (
+                        <Text key={letterIndex} style={styles.journaltitle}>
+                          {letter}
+                        </Text>
+                      ))}
+                    </View>
                   </View>
-                </View>
-            </View>
+              </View>
+            </Link>
           ))}
           <Bookend height={100} width={100} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}/>
           <Flowerpot height={Math.ceil(110*flowerpotSizeRatio)} width={Math.ceil(45*flowerpotSizeRatio)} style={{position: "absolute",right: 5, bottom: 0}}/>

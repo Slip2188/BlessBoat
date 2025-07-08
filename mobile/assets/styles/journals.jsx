@@ -1,4 +1,4 @@
-import { ScrollView, Text, StyleSheet, View } from 'react-native';
+import {StyleSheet} from 'react-native';
 import COLOR from "./colors";
 
 const journalHeight = "300"
@@ -41,8 +41,6 @@ const styles = StyleSheet.create({
     height: journalHeight,
     width: journalWidth,
     borderRadius: 12,
-    position: "relative",
-    alignSelf: "flex-end"
   },
 
   journal: {
