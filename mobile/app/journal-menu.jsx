@@ -13,7 +13,8 @@ import NextArrow from "../components/svgs/journal-menu/next-arrow.jsx"
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect, useState, useCallback} from 'react';
-import { useFocusEffect } from '@react-navigation/native';
+// import { useFocusEffect } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,6 +22,7 @@ SplashScreen.preventAutoHideAsync();
 export default function JournalMenuScreen() {
   const insets = useSafeAreaInsets();
   const [selected, setSelected] = useState(null);
+  const router = useRouter();
 
   const journalName= "Daily"
 
@@ -35,11 +37,17 @@ export default function JournalMenuScreen() {
     }
   }, [loaded, error]);
   
-  useFocusEffect(
-    useCallback(() => {
-      setSelected(null); // or set to default like 'write'
-    }, [])
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     setSelected(null); // or set to default like 'write'
+  //   }, [])
+  // );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     console.log("Focused: journal-menu");
+  //     return () => console.log("Unfocused: journal-menu");
+  //   }, [])
+  // );
 
   if (!loaded && !error) {
     return null;
@@ -80,7 +88,7 @@ export default function JournalMenuScreen() {
           </View>
 
           {options.map((option) => (  
-          <TouchableOpacity activeOpacity={1} style={styles.option_container} key={option.key} onPress={() => setSelected(option.key)}>
+          <TouchableOpacity style={styles.option_container} key={option.key} onPress={() => setSelected(option.key)}>
             <View style={{flex:1, alignItems:"flex-end", marginTop:5, zIndex:0}} >
               {selected === option.key &&
               <FillCircle width={20} height={20} color={option.color} style={{alignSelf:"flex-start", position:"absolute", left:15,  transform: [{rotate: '20deg'}]}}/>}
@@ -91,7 +99,7 @@ export default function JournalMenuScreen() {
           ))}
 
           <View style={styles.doodles_container}>
-            { selected != null && <Link href={`./${selected}`} style={{position: "absolute", top: -70, left:"35%"}}><NextArrow width={75} height={21} color={COLOR.brown3} /></Link>}
+            { selected != null && <TouchableOpacity onPress={() => router.navigate(`/${selected}`)} style={{position: "absolute", top: -70, left:"35%"}}><NextArrow width={75} height={21} color={COLOR.brown3} /></TouchableOpacity>}
             <SmileyDoodle height={50} width={53} style={{position: "absolute", bottom: 50}}/>
             <HeartDoodle height={45} width={63} style={{position: "absolute", top: 0, right: 10, transform: [{rotate: '20deg'}]}}/>
           </View>

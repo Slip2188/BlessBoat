@@ -53,13 +53,18 @@
             ]
           },
           "ios": {
-            "fonts": ["./assets/fonts/Ubuntu/Ubuntu-Regular.ttf", "./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf"]
+            "fonts": [
+              "./assets/fonts/Ubuntu/Ubuntu-Regular.ttf",
+              "./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf"
+            ]
           }
         }
-      ]
+      ],
+      "expo-router",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
     }
-  }}
-
+  }
+}

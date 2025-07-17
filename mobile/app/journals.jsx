@@ -1,5 +1,5 @@
 import styles from "../assets/styles/journals"
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../assets/styles/colors";
@@ -9,6 +9,10 @@ import Bookend from "../components/svgs/journals/bookend";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
+import { useRouter } from 'expo-router';
+// import { useFocusEffect } from '@react-navigation/native';
+// import {useCallback} from 'react';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,7 +23,7 @@ const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.tea
 
 export default function JournalScreen() {
   const insets = useSafeAreaInsets();
-
+  const router = useRouter()
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
@@ -34,6 +38,12 @@ export default function JournalScreen() {
   if (!loaded && !error) {
     return null;
   }
+    // useFocusEffect(
+    //   useCallback(() => {
+    //     console.log("Focused: journals");
+    //     return () => console.log("Unfocused: journals");
+    //   }, [])
+    // );
 
 
   return (
@@ -48,7 +58,7 @@ export default function JournalScreen() {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
           {journals.map((name, nameIndex)=>(
-            <Link href="./journal-menu"  key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
+            <TouchableOpacity onPress={() => router.navigate('/journal-menu')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
               <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
                   <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
                     <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>
@@ -61,7 +71,7 @@ export default function JournalScreen() {
                     </View>
                   </View>
               </View>
-            </Link>
+            </TouchableOpacity>
           ))}
           <Bookend height={100} width={100} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}/>
           <Flowerpot height={Math.ceil(110*flowerpotSizeRatio)} width={Math.ceil(45*flowerpotSizeRatio)} style={{position: "absolute",right: 5, bottom: 0}}/>

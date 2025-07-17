@@ -1,18 +1,20 @@
 import styles from "../assets/styles/journal-menu"
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../assets/styles/colors";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
+import { useRouter } from 'expo-router';
+
 
 SplashScreen.preventAutoHideAsync();
 
 
-export default function JournalScreen() {
+export default function NewEntryScreen() {
   const insets = useSafeAreaInsets();
-
+  const router = useRouter();
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
@@ -31,8 +33,8 @@ export default function JournalScreen() {
 
   return (
     <View style={{paddingTop: insets.top, flex: 1}}>
-        <Text>OH MY GODDDD IT IS DA NEW ENTRYYYY</Text>
-        <Link href="./journal-menu"><Text>BACK</Text></Link>
+        <Text>OH MY GODDDD NEW JOURNALALLALL</Text>
+        <TouchableOpacity onPress={() => router.navigate('/journals')}><Text>BACK</Text></TouchableOpacity>
     </View>
   );
 }

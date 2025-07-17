@@ -6,13 +6,15 @@ import COLOR from "../assets/styles/colors";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
+import { useRouter } from 'expo-router';
+
 
 SplashScreen.preventAutoHideAsync();
 
 
 export default function JournalScreen() {
   const insets = useSafeAreaInsets();
-
+  const router = useRouter();
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
@@ -30,9 +32,7 @@ export default function JournalScreen() {
 
 
   return (
-    <View style={[styles.container, {paddingTop: insets.top, flex: 1}]}>
-
-
+    <View style={{paddingTop: insets.top, flex: 1}}>
     </View>
   );
 }

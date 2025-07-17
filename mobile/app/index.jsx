@@ -1,13 +1,22 @@
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, Button } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
+
 
 export default function LandingScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log("Index page mounted");
+  }, []);
+
   return (
-    <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+    <SafeAreaView style={[styles.container, {paddingTop: insets.top, backgroundColor: "#FE7743"}]}>
       <Text>Lolo</Text>
-      <Text><Link href="./journals">Journals</Link></Text>
+      <Button title="Journals" onPress={() => router.navigate('/journals')}></Button>
     </SafeAreaView>
   );
 }
