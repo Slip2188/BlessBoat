@@ -17,7 +17,7 @@ export default function NewEntryScreen() {
   const router = useRouter();
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
+    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function NewEntryScreen() {
   return (
     <View style={{paddingTop: insets.top, flex: 1}}>
         <Text>OH MY GODDDD NEW JOURNALALLALL</Text>
-        <TouchableOpacity onPress={() => router.navigate('/journals')}><Text>BACK</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => router.navigate('/journal-menu')}><Text>BACK</Text></TouchableOpacity>
     </View>
   );
 }

@@ -16,7 +16,8 @@ export default function LandingScreen() {
   return (
     <SafeAreaView style={[styles.container, {paddingTop: insets.top, backgroundColor: "#FE7743"}]}>
       <Text>Lolo</Text>
-      <Button title="Journals" onPress={() => router.navigate('/journals')}></Button>
+      {/* <Button title="Journals" onPress={() => router.navigate('/journals')}></Button> */}
+      <Button title="Login" onPress={() => router.navigate('/(auth)/login')}></Button>
     </SafeAreaView>
   );
 }

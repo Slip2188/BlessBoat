@@ -17,7 +17,7 @@ export default function JournalScreen() {
   const router = useRouter();
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
+    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {

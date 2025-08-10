@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         height: "100%",
         width: "100%",
+        opacity: 0.7
     },
     bookmarkcontainer: {
         flex: 1, 
@@ -40,12 +41,11 @@ const styles = StyleSheet.create({
         fontFamily: "Borel",
         fontSize: 35,
         textAlign: "center",
-        color: COLOR.brown3,
-        
+        color: COLOR.brown3
     },
     body_text: {
         textAlign: "left",
-        fontSize: 20,
+        fontSize: 25,
     },
     todo_container: {
         flex: 1,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     doodles_container:{
-        flex: 1, 
+        flex: 2, 
         marginTop: 25
     }
 })

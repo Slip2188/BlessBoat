@@ -21,7 +21,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function JournalMenuScreen() {
   const insets = useSafeAreaInsets();
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState("write-new");
   const router = useRouter();
 
   const journalName= "Daily"
@@ -57,9 +57,9 @@ export default function JournalMenuScreen() {
   
 
   const options = [
-    { key: 'view-prev', label: `View ${journalName}'s archive and analysis`, color: COLOR.magenta3},
-    { key: 'write-new', label: 'Write an entry for today', color: COLOR.purplyblue2},
-    { key: 'journals', label: 'Choose another journal', color: COLOR.magenta2}
+    { key: 'view-prev', label: "View Archive", color: COLOR.magenta3},
+    { key: 'write-new', label: 'Write Entry', color: COLOR.purplyblue2},
+    { key: 'del-joural', label: 'Delete Journal', color: COLOR.magenta1}
   ];
 
   return (
@@ -84,24 +84,24 @@ export default function JournalMenuScreen() {
 
           <View style={styles.todo_container}>
             <Scribble width={44} height={30} style={{alignSelf:"flex-end", marginTop: 50, marginRight: 10,transform: [{rotate: '20deg'}]}}/>
-            <Text style={[styles.text, {paddingTop: 20}]}>Choose a task</Text>
+            <Text style={[styles.text, {paddingTop: 20, flexWrap:"wrap"}]}>Choose a task</Text>
           </View>
 
           {options.map((option) => (  
-          <TouchableOpacity style={styles.option_container} key={option.key} onPress={() => setSelected(option.key)}>
-            <View style={{flex:1, alignItems:"flex-end", marginTop:5, zIndex:0}} >
+          <TouchableOpacity activeOpacity={1} style={styles.option_container} key={option.key} onPress={() => setSelected(option.key)}>
+            <View style={{flex:1, marginTop:5, zIndex:0, alignItems:"center", justifyContent:"center"}} >
               {selected === option.key &&
-              <FillCircle width={20} height={20} color={option.color} style={{alignSelf:"flex-start", position:"absolute", left:15,  transform: [{rotate: '20deg'}]}}/>}
-              <CircleDoodle width={20} height={20} color={option.color} style={{alignSelf:"flex-start", position:"absolute", left:15,  transform: [{rotate: '20deg'}]}}/>
+              <FillCircle width={20} height={20} color={option.color} style={{alignSelf:"flex-end", transform: [{rotate: '20deg'}], marginRight:20}}/>}
+              <CircleDoodle width={20} height={20} color={option.color} style={{alignSelf:"flex-end", position:"absolute",transform: [{rotate: '20deg'}], marginRight:20}}/>
             </View>
-            <View style={{flex: 6}}><Text style={[styles.text, styles.body_text,{color: option.color, flex: 5}]}>{option.label}</Text></View>
+            <View style={{flex: 3, justifyContent:"center", paddingTop:20}}><Text style={[styles.text, styles.body_text,{color: option.color}]}>{option.label}</Text></View>
           </TouchableOpacity>
           ))}
 
           <View style={styles.doodles_container}>
-            { selected != null && <TouchableOpacity onPress={() => router.navigate(`/${selected}`)} style={{position: "absolute", top: -70, left:"35%"}}><NextArrow width={75} height={21} color={COLOR.brown3} /></TouchableOpacity>}
+            { selected != null && <TouchableOpacity activeOpacity={1} onPress={() => router.navigate(`/${selected}`)} style={{position: "absolute", left:"35%"}}><NextArrow width={75} height={21} color={COLOR.brown3} /></TouchableOpacity>}
             <SmileyDoodle height={50} width={53} style={{position: "absolute", bottom: 50}}/>
-            <HeartDoodle height={45} width={63} style={{position: "absolute", top: 0, right: 10, transform: [{rotate: '20deg'}]}}/>
+            <HeartDoodle height={45} width={63} style={{position: "absolute", top: 40, right: 10, transform: [{rotate: '20deg'}]}}/>
           </View>
 
         </View>

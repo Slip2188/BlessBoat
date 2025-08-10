@@ -58,7 +58,7 @@ export default function JournalScreen() {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
           {journals.map((name, nameIndex)=>(
-            <TouchableOpacity onPress={() => router.navigate('/journal-menu')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
+            <TouchableOpacity activeOpacity={1} onPress={() => router.navigate('/journal-menu')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
               <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
                   <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
                     <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>

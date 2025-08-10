@@ -20,7 +20,7 @@ export default function ArchiveScreen() {
   const router = useRouter();
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
+    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
     'Borel': require('../assets/fonts/Borel-Regular.ttf'),
   });
 
