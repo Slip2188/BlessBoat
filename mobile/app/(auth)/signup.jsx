@@ -9,6 +9,8 @@ import {useEffect} from 'react';
 import { useRouter } from 'expo-router';
 import { useState} from "react"
 
+import { useAuthStore } from "../../store/authStore";
+
 import Logo from "../../components/svgs/Logo"
 
 import { Ionicons } from "@expo/vector-icons"
@@ -27,9 +29,20 @@ export default function LoginScreen() {
   const[showPassword, setShowPassword] = useState(false);
   const [cpassword, setcPassword] = useState("")
   const[showcPassword, setShowcPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {}
+
+  // Tutorial code for working of zustand
+  // const {user, setUser, sayHello} = useAuthStore()
+  // const handleSignup = () => {setUser({name: "Bob"})}
+
+  const {user, token, isLoading} = useAuthStore()
+  const handleSignup = async () => {
+    const result = await register(name, email, password)
+    if (!result.success) Alert.alert("Error", result.error);
+  }
+
+  console.log(user)
+  console.log(token)
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
@@ -105,9 +118,9 @@ export default function LoginScreen() {
             </View>
 
             <TouchableOpacity style={styles.loginbutton}
-                disabled={isLoading}>
+                disabled={isLoading} onPress={handleSignup}>
                 {isLoading ? (
-                <ActivityIndicator color={COLOR.pink2} />
+                <ActivityIndicator color={COLOR.cream}/>
                 ): (
                 <Text style={styles.buttonText}>Sign Up</Text>
                 )}
