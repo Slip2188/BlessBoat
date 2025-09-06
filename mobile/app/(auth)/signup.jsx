@@ -1,5 +1,5 @@
 import styles from "../../assets/styles/(auth)/auth"
-import { TextInput, Text, View, KeyboardAvoidingView, TouchableOpacity, Platform } from 'react-native';
+import { TextInput, Text, View, KeyboardAvoidingView, TouchableOpacity, Platform, ActivityIndicator, Alert} from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../../assets/styles/colors";
@@ -23,7 +23,7 @@ export default function LoginScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
-  const [name, setName] = useState("")
+  const [username, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const[showPassword, setShowPassword] = useState(false);
@@ -35,14 +35,21 @@ export default function LoginScreen() {
   // const {user, setUser, sayHello} = useAuthStore()
   // const handleSignup = () => {setUser({name: "Bob"})}
 
-  const {user, token, isLoading} = useAuthStore()
+  const {user, token, isLoading, register} = useAuthStore()
+
   const handleSignup = async () => {
-    const result = await register(name, email, password)
-    if (!result.success) Alert.alert("Error", result.error);
+    if (password == cpassword) {
+      console.log("Register triggered")
+      const result = await register(username, email, password)
+      if (!result.success) Alert.alert("Error", result.error);
+    } else {
+      Alert.alert("Confirmed password does not match password!")
+    }
+    
   }
 
-  console.log(user)
-  console.log(token)
+  // console.log(user)
+  // console.log(token)
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
@@ -74,9 +81,8 @@ export default function LoginScreen() {
               style={styles.input}
               placeholder="Name"
               placeholderTextColor={COLOR.pink2}
-              value={name} 
+              value={username} 
               onChangeText={setName}
-              keyboardType="email-address" 
               autoCapitalize="none"
             />
 
@@ -87,6 +93,7 @@ export default function LoginScreen() {
               value={email} 
               onChangeText={setEmail}
               autoCapitalize="none"
+              keyboardType="email-address" 
             />
 
             <View style={{display:"flex", flexDirection:"row", alignSelf:"center"}}>

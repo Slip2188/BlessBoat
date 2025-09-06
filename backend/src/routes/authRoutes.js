@@ -2,11 +2,12 @@ import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
+
 const router = express.Router();
 
 // Token is basically cache so that the user doesnt have to sign in every day
 const generateToken = (userID) => {
-    return jwt.sign({userID}, process.nextTick.JWT_SECRET, {expiresIn:"15d"})
+    return jwt.sign({userID}, process.env.JWT_SECRET, {expiresIn:"15d"})
 }
 
 router.post("/register", async(req, res) => {

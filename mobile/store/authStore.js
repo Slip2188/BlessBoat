@@ -14,16 +14,16 @@ export const useAuthStore = create ((set) =>({
     token: null,
     isLoading: false,
 
-    register: async (name, email, password) => {
+    register: async (username, email, password) => {
         set({isLoading:true})
         try {
-            const response = await fetch("http://localhost:3000/api/auth/register", {
+            const response = await fetch("https://blessboat.onrender.com/api/auth/register", {
                 method: "POST" ,
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    name, 
+                    username, 
                     email, 
                     password
                 })
