@@ -1,11 +1,11 @@
-import styles from "../assets/styles/journals"
+import styles from "../../assets/styles/journals"
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import COLOR from "../assets/styles/colors";
-import Logo from "../components/svgs/Logo";
-import Flowerpot from "../components/svgs/journals/flowerpot";
-import Bookend from "../components/svgs/journals/bookend";
+import COLOR from "../../assets/styles/colors";
+import Logo from "../../components/svgs/Logo";
+import Flowerpot from "../../components/svgs/journals/flowerpot";
+import Bookend from "../../components/svgs/journals/bookend";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
@@ -26,7 +26,7 @@ export default function JournalScreen() {
   const router = useRouter()
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
+    'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {

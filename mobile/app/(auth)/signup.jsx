@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
 import { useRouter } from 'expo-router';
-import { useState} from "react"
+import { useState} from "react";
 
 import { useAuthStore } from "../../store/authStore";
 
@@ -41,7 +41,13 @@ export default function LoginScreen() {
     if (password == cpassword) {
       console.log("Register triggered")
       const result = await register(username, email, password)
-      if (!result.success) Alert.alert("Error", result.error);
+      if (!result.success) {
+        Alert.alert("Error", result.error)
+      } else {
+        Alert.alert("Registration Successful!")
+        router.navigate("/")
+      }
+
     } else {
       Alert.alert("Confirmed password does not match password!")
     }
@@ -138,7 +144,7 @@ export default function LoginScreen() {
 
         <View style={styles.footercontainer}>
           <Text style={{color:COLOR.cream, fontSize:15, fontFamily:"Ubuntu", marginRight:5}}>Already have an account?</Text>
-          <Link href="/(auth)/login"><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Log In</Text></Link>
+          <Link href="/(auth)"><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Log In</Text></Link>
         </View>
 
     </View>

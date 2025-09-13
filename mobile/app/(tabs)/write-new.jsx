@@ -1,8 +1,8 @@
-import styles from "../assets/styles/journal-menu"
+import styles from "../../assets/styles/journal-menu"
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import COLOR from "../assets/styles/colors";
+import COLOR from "../../assets/styles/colors";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
@@ -17,7 +17,7 @@ export default function NewEntryScreen() {
   const router = useRouter();
 
   const [loaded, error] = useFonts({
-    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
+    'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {

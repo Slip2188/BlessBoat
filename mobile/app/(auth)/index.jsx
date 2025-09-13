@@ -1,5 +1,5 @@
 import styles from "../../assets/styles/(auth)/auth"
-import { TextInput, Text, View, KeyboardAvoidingView, TouchableOpacity, Platform } from 'react-native';
+import { TextInput, Text, View, KeyboardAvoidingView, TouchableOpacity, Platform, Alert, ActivityIndicator} from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../../assets/styles/colors";
@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
 import { useRouter } from 'expo-router';
 import { useState} from "react"
+import { useAuthStore } from "../../store/authStore";
 
 import Logo from "../../components/svgs/Logo"
 
@@ -24,9 +25,14 @@ export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const[showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  
+  const {user, isLoading, login} = useAuthStore()
 
-  const handleLogin = () => {}
+  const handleLogin = async () => {
+    console.log(email, password)
+    const result = await login(email, password)
+    if (!result.success) Alert.alert("Error", result.error)
+  }
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
@@ -43,6 +49,7 @@ export default function LoginScreen() {
   if (!loaded && !error) {
     return null;
   }
+
 
 
   return (
@@ -78,7 +85,7 @@ export default function LoginScreen() {
             </View>
 
             <TouchableOpacity style={styles.loginbutton}
-                disabled={isLoading}>
+                disabled={isLoading} onPress={handleLogin}>
                 {isLoading ? (
                 <ActivityIndicator color={COLOR.pink2} />
                 ): (

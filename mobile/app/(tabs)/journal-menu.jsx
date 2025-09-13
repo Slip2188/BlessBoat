@@ -1,15 +1,15 @@
-import styles from "../assets/styles/journal-menu"
+import styles from "../../assets/styles/journal-menu.jsx"
 import { Text, View, Image, TouchableOpacity} from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import COLOR from "../assets/styles/colors";
-import Bookmark from "../components/svgs/journal-menu/bookmark";
-import HeartDoodle from "../components/svgs/journal-menu/heart-doodle";
-import Scribble from "../components/svgs/journal-menu/scribble";
-import SmileyDoodle from "../components/svgs/journal-menu/smiley-doodle";
-import CircleDoodle from "../components/svgs/journal-menu/circle.jsx";
-import FillCircle from "../components/svgs/journal-menu/fill-circle.jsx";
-import NextArrow from "../components/svgs/journal-menu/next-arrow.jsx"
+import COLOR from "../../assets/styles/colors.jsx";
+import Bookmark from "../../components/svgs/journal-menu/bookmark.jsx";
+import HeartDoodle from "../../components/svgs/journal-menu/heart-doodle.jsx";
+import Scribble from "../../components/svgs/journal-menu/scribble.jsx";
+import SmileyDoodle from "../../components/svgs/journal-menu/smiley-doodle.jsx";
+import CircleDoodle from "../../components/svgs/journal-menu/circle.jsx";
+import FillCircle from "../../components/svgs/journal-menu/fill-circle.jsx";
+import NextArrow from "../../components/svgs/journal-menu/next-arrow.jsx"
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect, useState, useCallback} from 'react';
@@ -27,8 +27,8 @@ export default function JournalMenuScreen() {
   const journalName= "Daily"
 
   const [loaded, error] = useFonts({
-    'Borel': require('../assets/fonts/Borel-Regular.ttf'),
-    'Ubuntu': require('../assets/fonts/Ubuntu-Regular.ttf'),
+    'Borel': require('../../assets/fonts/Borel-Regular.ttf'),
+    'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function JournalMenuScreen() {
   return (
     <View style={[styles.container, {flex: 1}]}>
 
-        <Image source={require("../assets/images/other/journal-menu/notebook-lines.png")} style={styles.notebooklines}/>
+        <Image source={require("../../assets/images/other/journal-menu/notebook-lines.png")} style={styles.notebooklines}/>
 
 
         <View style={styles.bookmarkcontainer}>

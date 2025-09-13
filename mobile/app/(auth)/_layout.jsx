@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 export default function AuthLayout() {
   return <SafeAreaProvider>
           <Stack screenOptions={{headerShown: false}}>
-            <Stack.Screen name="login" />
+            <Stack.Screen name="index" />
             <Stack.Screen name="signup" />
           </Stack>
         </SafeAreaProvider>
