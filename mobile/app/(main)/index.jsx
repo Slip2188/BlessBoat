@@ -50,7 +50,7 @@ export default function JournalScreen() {
     <View style={[styles.container, {paddingTop: insets.top, flex: 1}]}>
 
       <View style={[styles.container, styles.toparea]}>
-        <Logo width={100} height={100} color={COLOR.purplyblue2} />
+        <Logo width={100} height={100} color={COLOR.magenta1} />
         <Text style={styles.topareaText}>Pick a Journal to write in today</Text>
       </View>
 
@@ -58,7 +58,7 @@ export default function JournalScreen() {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
           {journals.map((name, nameIndex)=>(
-            <TouchableOpacity activeOpacity={1} onPress={() => router.navigate('/journal-menu')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
+            <TouchableOpacity activeOpacity={1} onPress={() => router.navigate('/(journal)')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
               <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
                   <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
                     <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>

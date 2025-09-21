@@ -12,7 +12,7 @@ import { useRouter } from 'expo-router';
 SplashScreen.preventAutoHideAsync();
 
 
-export default function NewEntryScreen() {
+export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
@@ -32,10 +32,9 @@ export default function NewEntryScreen() {
 
 
   return (
-    <View style={{paddingTop: insets.top, flex: 1}}>
-        <Text>OH MY GODDDD NEW JOURNALALLALL</Text>
-        <TouchableOpacity onPress={() => router.navigate('/journal-menu')}><Text>BACK</Text></TouchableOpacity>
-    </View>
+    <TouchableOpacity style={{paddingTop: insets.top, flex: 1}} onPress={()=>{router.navigate("/(main)")}}>
+            <Text>Home</Text>
+    </TouchableOpacity>
   );
 }
 

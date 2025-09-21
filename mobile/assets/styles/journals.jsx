@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   topareaText: {
     fontFamily: "Ubuntu",
     fontSize: 30,
-    color: COLOR.purplyblue2,
+    color: COLOR.magenta1,
     textAlign:"center",
     marginTop: 25,
     width: "75%"
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   bottomarea: {
     flex: 1,
-    backgroundColor: COLOR.purplyblue2
+    backgroundColor: COLOR.magenta1
   },
 
   journalcover: {
