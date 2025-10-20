@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { G, Rect, Path } from "react-native-svg"
+import Svg, { G, Path } from "react-native-svg"
 const SvgComponent = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
@@ -12,50 +12,33 @@ const SvgComponent = (props) => (
         fillOpacity: 1,
         stroke: "none",
       }}
-      transform="translate(-29.54 -51.356)"
     >
-      <Rect
-        width={26.986}
-        height={99.24}
-        x={123.505}
-        y={-128.963}
-        ry={6.409}
+      <Path
+        d="M129.914-128.963h14.168c3.55 0 6.41 2.859 6.41 6.41v86.42c0 3.551-2.86 6.41-6.41 6.41h-14.168a6.395 6.395 0 0 1-6.409-6.41v-86.42c0-3.551 2.859-6.41 6.41-6.41z"
         style={{
-          fill: "#9f8383",
-          fillOpacity: 1,
-          stroke: "none",
           strokeWidth: 5.292,
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          strokeDasharray: "none",
         }}
-        transform="rotate(90.026)"
+        transform="rotate(90.026 10.897 -40.44)"
       />
-      <Rect
-        width={26.986}
-        height={99.24}
-        x={29.742}
-        y={51.305}
-        ry={6.409}
+      <Path
+        d="M36.15 51.305H50.32c3.55 0 6.409 2.859 6.409 6.41v86.42c0 3.551-2.859 6.41-6.41 6.41H36.152a6.395 6.395 0 0 1-6.41-6.41v-86.42c0-3.551 2.86-6.41 6.41-6.41z"
         style={{
-          fill: "#9f8383",
-          fillOpacity: 1,
-          stroke: "none",
           strokeWidth: 5.292,
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          strokeDasharray: "none",
         }}
-        transform="rotate(.08)"
+        transform="rotate(.08 36553.774 -21059.368)"
       />
     </G>
     <Path
-      d="M106.321 123.852c.217-27.347-23.64-49.616-49.743-50l-.255 49.89z"
+      d="M106.321 124.44c.22-27.669-23.987-50.2-50.474-50.588l-.26 50.477z"
       style={{
         fill: "#9f8383",
         fillOpacity: 1,
         stroke: "none",
-        strokeWidth: ".254228px",
+        strokeWidth: ".25759px",
         strokeLinecap: "butt",
         strokeLinejoin: "miter",
         strokeOpacity: 1,
@@ -63,23 +46,31 @@ const SvgComponent = (props) => (
       transform="translate(-29.54 -51.356)"
     />
     <G
+      stroke="none"
       style={{
         stroke: "#4b352a",
         strokeWidth: 14.1577,
-        strokeDasharray: "none",
-        strokeOpacity: 1,
       }}
     >
       <Path
-        d="m40.084 4.916-.168 70.168M4.882 39.882l70.236.236"
+        d="M40.1-2.162A7.079 7.079 0 0 0 33.004 4.9l-.166 70.166a7.079 7.079 0 0 0 7.062 7.096 7.079 7.079 0 0 0 7.096-7.062l.166-70.166A7.079 7.079 0 0 0 40.1-2.162z"
         style={{
-          fill: "none",
-          stroke: "#4b352a",
-          strokeWidth: 14.1577,
+          color: "#000",
+          fill: "#4b352a",
+          stroke: "none",
           strokeLinecap: "round",
-          strokeLinejoin: "miter",
-          strokeDasharray: "none",
-          strokeOpacity: 1,
+          InkscapeStroke: "none",
+        }}
+        transform="matrix(.35747 0 0 .35747 27.565 41.413)"
+      />
+      <Path
+        d="M4.906 32.803a7.079 7.079 0 0 0-7.103 7.054 7.079 7.079 0 0 0 7.054 7.104l70.237.236a7.079 7.079 0 0 0 7.103-7.054 7.079 7.079 0 0 0-7.054-7.104z"
+        style={{
+          color: "#000",
+          fill: "#4b352a",
+          stroke: "none",
+          strokeLinecap: "round",
+          InkscapeStroke: "none",
         }}
         transform="matrix(.35747 0 0 .35747 27.565 41.413)"
       />

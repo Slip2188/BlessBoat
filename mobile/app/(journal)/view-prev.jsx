@@ -39,18 +39,6 @@ export default function ArchiveScreen() {
 
   return (
     <View style={{paddingTop: insets.top, flex: 1}}>
-        <View style={styles.titleContainer}>
-            <Logo width={70} height={70} color={COLOR.pink1} style={{marginBottom: 5}}/>
-            <Text style={[{fontFamily:"Ubuntu"}, styles.titleContainerText]}>{journalName}'s Archive</Text>
-        </View>
-
-        <View style={styles.mainContainer}>
-            
-        </View>
-
-        <View style={styles.footerContainer}>
-
-        </View>
         
         
     </View>

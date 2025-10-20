@@ -8,8 +8,10 @@ import Flowerpot from "../../components/svgs/journals/flowerpot";
 import Bookend from "../../components/svgs/journals/bookend";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter } from 'expo-router';
+
+import AddJournalModal from '../../components/add-journal';
 // import { useFocusEffect } from '@react-navigation/native';
 // import {useCallback} from 'react';
 
@@ -24,6 +26,8 @@ const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.tea
 export default function JournalScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter()
+  const [modalVisible, setModalVisible] = useState(false);
+  const [journalName, setJournalName] = useState('');
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
@@ -44,6 +48,14 @@ export default function JournalScreen() {
     //     return () => console.log("Unfocused: journals");
     //   }, [])
     // );
+
+ const handleAddJournal = () => {
+    console.log('New Journal:', journalName);
+    // your logic to save or update the list goes here
+    setModalVisible(false);
+    setJournalName('');
+  };
+  
 
 
   return (
@@ -73,9 +85,18 @@ export default function JournalScreen() {
               </View>
             </TouchableOpacity>
           ))}
-          <Bookend height={100} width={100} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}/>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}>
+            <Bookend height={100} width={100}/>
+          </TouchableOpacity>
           <Flowerpot height={Math.ceil(110*flowerpotSizeRatio)} width={Math.ceil(45*flowerpotSizeRatio)} style={{position: "absolute",right: 5, bottom: 0}}/>
-        </View>  
+        </View> 
+        <AddJournalModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onAdd={handleAddJournal}
+          journalName={journalName}
+          setJournalName={setJournalName}
+        /> 
       </ScrollView>
 
 

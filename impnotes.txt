@@ -3,7 +3,14 @@ Deleting journals and deleting entries hum baad mei karenge (1:28:00 in video)
 Zustand Basics 2:35:00 in video
 Complete signup workflow 2:49:35 in video
 
-SOME ERROR WITH JWT_SECRET AHH
+NEXT STEPS:
+1. Journals accessing from database, adding journals to database
+2. Text Editor refine UX
+3. Add so that image can be inserted
+4. Archive based on current journal (main store file se)
+5. Chat GPT AI integration to auto generate title
+6. feature to change title
+7. Profile and settings page
 
 We are using zustand to connect backend to frontend, and render.com to deploy our api
 cronjobs is used to send a get requesnt every 14 minutes to render.com so that aur api doesnt go like offline
