@@ -11,18 +11,19 @@ import User from "../models/User.js";
 // });
 
 const protectRoute = async (req, res, next) => {
+    console.log("Headers:", req.headers);
     try {
         // get the user's token
-        const token = req.header("Authorisation").replace("Bearer ", "");
-        if (!token) {
-            return res.status(401).json({message: "No authentication token, access denied"})
-        } 
+        const authHeader = req.headers['authorization'];
+        if (!authHeader) return res.status(401).json({message:"No token, access denied"});
+        const token = authHeader.split(" ")[1]; 
 
+        
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         // Find user
-        const user = await User.findById(decoded.userId).select("-password") // Selects all feilds except the password
+        const user = await User.findById(decoded.userID).select("-password") // Selects all feilds except the password
         if (!user) {
             return res.status(401).json({message: "Your token is invalid"})
         }

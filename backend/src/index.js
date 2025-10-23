@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 job.start()
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin: "*",
+    allowedHeaders: ["Content-Type", "Authorization"]
+  }))
 
 app.use("/api/auth", authRoutes); // basically if we want to visit any authentication routes (login or register), we have to add /api/auth in the address
 app.use("/api/journal", journalRoutes);

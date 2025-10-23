@@ -2,6 +2,7 @@ NOTES:
 Deleting journals and deleting entries hum baad mei karenge (1:28:00 in video)
 Zustand Basics 2:35:00 in video
 Complete signup workflow 2:49:35 in video
+image saving and all for entry saving in video 3:45:28 se and even at 4:00:00 for backend
 
 NEXT STEPS:
 1. Journals accessing from database, adding journals to database

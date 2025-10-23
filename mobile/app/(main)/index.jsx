@@ -1,5 +1,5 @@
 import styles from "../../assets/styles/journals"
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../../assets/styles/colors";
@@ -8,10 +8,13 @@ import Flowerpot from "../../components/svgs/journals/flowerpot";
 import Bookend from "../../components/svgs/journals/bookend";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import { useRouter } from 'expo-router';
 
 import AddJournalModal from '../../components/add-journal';
+import {useAuthStore} from "../../store/authStore"
+import { API_URL } from "../../constants/api.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { useFocusEffect } from '@react-navigation/native';
 // import {useCallback} from 'react';
 
@@ -20,7 +23,7 @@ SplashScreen.preventAutoHideAsync();
 
 const flowerpotSizeRatio = 2.5
 
-const journals = ["daily", "ritika", "work", "igloo", "pinga"]
+const journals = ["daily 18", "ritika", "work", "igloo", "pinga"]
 const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.teal2], [COLOR.cherry1, COLOR.cherry2], [COLOR.grayblue1, COLOR.grayblue2], [COLOR.blue1, COLOR.blue2]]
 
 export default function JournalScreen() {
@@ -28,6 +31,9 @@ export default function JournalScreen() {
   const router = useRouter()
   const [modalVisible, setModalVisible] = useState(false);
   const [journalName, setJournalName] = useState('');
+  const [loading, setLoading] = useState(false)
+  const [supMessage, setSupMessage] = useState("")
+  const textInputRef = useRef(null);
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
@@ -39,21 +45,59 @@ export default function JournalScreen() {
     }
   }, [loaded, error]);
 
+  // useEffect(() => {
+  //   console.log("Token loaded:", token)
+  // }, [token])
+
   if (!loaded && !error) {
     return null;
   }
-    // useFocusEffect(
-    //   useCallback(() => {
-    //     console.log("Focused: journals");
-    //     return () => console.log("Unfocused: journals");
-    //   }, [])
-    // );
 
- const handleAddJournal = () => {
-    console.log('New Journal:', journalName);
-    // your logic to save or update the list goes here
-    setModalVisible(false);
-    setJournalName('');
+  const handleAddJournal = async () => {
+    const token = await AsyncStorage.getItem("token")
+
+    if (journalName.length > 8) {
+      setSupMessage("Limit Name to 8 Characters")
+      return;
+    }
+    
+    try {
+      setLoading(true)
+      const response = await fetch(`${API_URL}/journal`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, 
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ journalName }),
+      });
+      
+
+      const data = await response.json()
+
+      //debugging
+      // console.log("Response status:", response.status)
+      // console.log("Response body:", data)
+      // console.log("Token literal:", JSON.stringify(token))
+
+
+
+      if (!response.ok) throw new Error(data.message || "Something went wrong")
+      
+      Alert.alert(`Successfully added ${journalName}!`)
+      setModalVisible(false);
+      setJournalName('');
+      setSupMessage("")
+
+    } catch (error) {
+      console.error ("Error creating post:", error);
+      Alert. alert ("Error", error.message || "Something went wrong");
+    } finally {
+      textInputRef.current.clear();
+      setLoading(false);
+      
+    }
+    
   };
   
 
@@ -96,6 +140,8 @@ export default function JournalScreen() {
           onAdd={handleAddJournal}
           journalName={journalName}
           setJournalName={setJournalName}
+          supMessage={supMessage}
+          textInputRef={textInputRef}
         /> 
       </ScrollView>
 

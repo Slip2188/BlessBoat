@@ -1,0 +1,1 @@
+export const API_URL = "https://blessboat.onrender.com/api"

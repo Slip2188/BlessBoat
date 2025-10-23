@@ -1,5 +1,4 @@
 import express from "express";
-import User from "../models/User.js";
 import Journal from "../models/Journal.js";
 import protectRoute from "../middleware/auth.middleware.js";
 
@@ -7,8 +6,9 @@ const router = express.Router();
 
 // Creates new journal
 router.post("/", protectRoute, async (req, res) => {
+    console.log("POST Req running")
     try {
-        const journalName = req.body;
+        const {journalName} = req.body;
         if (!journalName) {
             return res.status(400).json({message: "Name your journal!"});
         }
@@ -23,7 +23,7 @@ router.post("/", protectRoute, async (req, res) => {
         res.status(201).json(newJournal)
     } catch (error) {
         console.log("Error creating journal", error.message)
-        res.status(500).json({message:error.message})
+        res.status(401).json({message:error.message})
     }
 });
 
@@ -40,14 +40,14 @@ router.get('/', protectRoute, async (req, res)=> {
     }
 })
 
-// Deletes an journal
-router.delete(":/id", protectRoute, async (req, res)=>{
+// Deletes a journal
+router.delete("/:id", protectRoute, async (req, res)=>{
     try {
         const journal = await Journal.findById(req.params.id) // :/id and req.params.id is corelated i.e. if its :/hello then req.params.hello should be written
         if (!journal) return res.status (404).json({ message: "Book not found" });
 
         // Check if the journal is actually belonging to the user
-        if (journal.user.toString() !== req.user._id.toString()) return res.status (404).json({ message: "Server error" });
+        if (journal.author.toString() !== req.user._id.toString()) return res.status (404).json({ message: "Server error" });
 
         await journal.deleteOne()
 
