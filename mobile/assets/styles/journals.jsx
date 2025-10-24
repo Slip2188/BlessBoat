@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     flex: 2,
     display: "flex",
     flexDirection: "row",
-    justifyContent:"flex"
+    justifyContent:"flex",
+    minHeight:journalHeight
   },
   bottomarea: {
     flex: 1,

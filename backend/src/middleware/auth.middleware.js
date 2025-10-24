@@ -11,7 +11,6 @@ import User from "../models/User.js";
 // });
 
 const protectRoute = async (req, res, next) => {
-    console.log("Headers:", req.headers);
     try {
         // get the user's token
         const authHeader = req.headers['authorization'];

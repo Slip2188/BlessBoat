@@ -23,7 +23,7 @@ SplashScreen.preventAutoHideAsync();
 
 const flowerpotSizeRatio = 2.5
 
-const journals = ["daily 18", "ritika", "work", "igloo", "pinga"]
+// const journals = ["daily 18", "ritika", "work", "igloo", "pinga"]
 const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.teal2], [COLOR.cherry1, COLOR.cherry2], [COLOR.grayblue1, COLOR.grayblue2], [COLOR.blue1, COLOR.blue2]]
 
 export default function JournalScreen() {
@@ -34,10 +34,26 @@ export default function JournalScreen() {
   const [loading, setLoading] = useState(false)
   const [supMessage, setSupMessage] = useState("")
   const textInputRef = useRef(null);
+  const [journals, setJournals] = useState();
 
   const [loaded, error] = useFonts({
     'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
   });
+
+  const getJournals = async () => {
+    try {
+      const {token} = useAuthStore
+      const response = await fetch(`${API_URL}/journal`, {         
+        headers: { Authorization: `Bearer ${token}` },       
+      });
+      const data = await response.json();
+      console.log(data)
+
+      if (!response.ok) throw new Error(data.message || "Failed to fetch journals");
+    } catch (error) {
+      console.log("Error fetching books", error);
+    }
+  }
 
   useEffect(() => {
     if (loaded || error) {
@@ -45,9 +61,9 @@ export default function JournalScreen() {
     }
   }, [loaded, error]);
 
-  // useEffect(() => {
-  //   console.log("Token loaded:", token)
-  // }, [token])
+  useEffect(() => {
+    getJournals()
+  }, [])
 
   if (!loaded && !error) {
     return null;
@@ -113,7 +129,7 @@ export default function JournalScreen() {
 
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
-          {journals.map((name, nameIndex)=>(
+          {/* {journals.map((name, nameIndex)=>(
             <TouchableOpacity activeOpacity={1} onPress={() => router.navigate('/(journal)')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
               <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
                   <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
@@ -128,7 +144,7 @@ export default function JournalScreen() {
                   </View>
               </View>
             </TouchableOpacity>
-          ))}
+          ))} */}
           <TouchableOpacity onPress={() => setModalVisible(true)} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}>
             <Bookend height={100} width={100}/>
           </TouchableOpacity>

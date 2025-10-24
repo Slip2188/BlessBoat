@@ -6,7 +6,6 @@ const router = express.Router();
 
 // Creates new journal
 router.post("/", protectRoute, async (req, res) => {
-    console.log("POST Req running")
     try {
         const {journalName} = req.body;
         if (!journalName) {
