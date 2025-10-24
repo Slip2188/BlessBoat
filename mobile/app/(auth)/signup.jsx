@@ -144,7 +144,7 @@ export default function LoginScreen() {
 
         <View style={styles.footercontainer}>
           <Text style={{color:COLOR.cream, fontSize:15, fontFamily:"Ubuntu", marginRight:5}}>Already have an account?</Text>
-          <Link href="/(auth)"><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Log In</Text></Link>
+          <TouchableOpacity onPress={()=>{router.push("/(auth)")}}><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Log In</Text></TouchableOpacity>
         </View>
 
     </View>

@@ -1,40 +1,47 @@
-// app/_layout.jsx
+import { useState, useEffect} from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
-import {StatusBar} from "expo-status-bar";
-import {useEffect} from "react"
+import { useAuthStore } from "../store/authStore";
 
-import {useAuthStore} from "../store/authStore"
+import SplashScreenView from "../components/splash-screen"
 
 export default function RootLayout() {
-  const router = useRouter()
-  const segments = useSegments() // Gives which route user is currently in
+  const router = useRouter();
+  const segments = useSegments();
+  const { checkAuth, user, token, isLoading } = useAuthStore();
 
-  const {checkAuth, user, token} = useAuthStore()
+  const [showSplash, setShowSplash] = useState(false);
 
-  useEffect(()=>{
-    checkAuth()
-  })
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-  useEffect(()=>{
-    const inAuthScreen = segments[0] == "(auth)"
-    const isSignedIn = user && token
-    if (!isSignedIn && !inAuthScreen){
-      router.replace("/(auth)")
+  useEffect(() => {
+    if (isLoading) return;
+
+    const inAuthScreen = segments[0] === "(auth)";
+    const isSignedIn = !!(user && token);
+
+    if (!isSignedIn && !inAuthScreen) {
+      router.replace("/(auth)");
     } else if (isSignedIn && inAuthScreen) {
-      router.replace("/(main)")
+      // Show splash after login/signup
+      setShowSplash(true);
+      setTimeout(() => {
+        setShowSplash(false);
+        router.replace("/(main)");
+      }, 1000); // 1.5 seconds splash
     }
-  },[user, token, segments])
+  }, [token, segments, isLoading]);
+
+  if (isLoading || showSplash) {
+    return <SplashScreenView />;
+  }
 
   return (
-        <Stack screenOptions={{ headerShown: false }}> 
-          <Stack.Screen name="(auth)" />
-          <Stack.Screen name="(main)" />
-          <Stack.Screen name="(journal)" />
-          {/* <StatusBar style="auto" /> */}
-        </Stack>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(main)" />
+      <Stack.Screen name="(journal)" />
+    </Stack>
   );
 }
-
-
-
-

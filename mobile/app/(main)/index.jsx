@@ -23,7 +23,6 @@ SplashScreen.preventAutoHideAsync();
 
 const flowerpotSizeRatio = 2.5
 
-// const journals = ["daily 18", "ritika", "work", "igloo", "pinga"]
 const journalColors = [[COLOR.magenta3, COLOR.magenta2], [COLOR.teal1, COLOR.teal2], [COLOR.cherry1, COLOR.cherry2], [COLOR.grayblue1, COLOR.grayblue2], [COLOR.blue1, COLOR.blue2]]
 
 export default function JournalScreen() {
@@ -36,18 +35,15 @@ export default function JournalScreen() {
   const textInputRef = useRef(null);
   const [journals, setJournals] = useState();
 
-  const [loaded, error] = useFonts({
-    'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
-  });
+  const {token, user} = useAuthStore()
 
   const getJournals = async () => {
     try {
-      const {token} = useAuthStore
       const response = await fetch(`${API_URL}/journal`, {         
         headers: { Authorization: `Bearer ${token}` },       
       });
       const data = await response.json();
-      console.log(data)
+      setJournals(data)
 
       if (!response.ok) throw new Error(data.message || "Failed to fetch journals");
     } catch (error) {
@@ -56,21 +52,26 @@ export default function JournalScreen() {
   }
 
   useEffect(() => {
+    if (token) {
+      getJournals()
+    }
+  }, [token])
+
+  const [loaded, error] = useFonts({
+    'Ubuntu': require('../../assets/fonts/Ubuntu-Regular.ttf'),
+  });
+
+  useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
     }
   }, [loaded, error]);
-
-  useEffect(() => {
-    getJournals()
-  }, [])
 
   if (!loaded && !error) {
     return null;
   }
 
   const handleAddJournal = async () => {
-    const token = await AsyncStorage.getItem("token")
 
     if (journalName.length > 8) {
       setSupMessage("Limit Name to 8 Characters")
@@ -104,6 +105,7 @@ export default function JournalScreen() {
       setModalVisible(false);
       setJournalName('');
       setSupMessage("")
+      getJournals()
 
     } catch (error) {
       console.error ("Error creating post:", error);
@@ -129,13 +131,13 @@ export default function JournalScreen() {
 
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.container, styles.middlearea]}>
-          {/* {journals.map((name, nameIndex)=>(
+          {journals ? journals.map((journal, nameIndex)=>(
             <TouchableOpacity activeOpacity={1} onPress={() => router.navigate('/(journal)')} key={nameIndex} style={{position: "relative", alignSelf: "flex-end"}}>
               <View style={[styles.journalcover, {backgroundColor: journalColors[nameIndex%5][1]}]}>
                   <View style={[styles.journal, {backgroundColor: journalColors[nameIndex%5][0]}]}>
                     <View style={[styles.journalribbon, {backgroundColor: journalColors[nameIndex%5][1]}]}></View>
                     <View style={styles.journaltitlecontainer}>
-                      {name.split('').map((letter, letterIndex) => (
+                      {journal.name.split('').map((letter, letterIndex) => (
                         <Text key={letterIndex} style={styles.journaltitle}>
                           {letter}
                         </Text>
@@ -144,7 +146,7 @@ export default function JournalScreen() {
                   </View>
               </View>
             </TouchableOpacity>
-          ))} */}
+          )):null}
           <TouchableOpacity onPress={() => setModalVisible(true)} style={{position: "relative",alignSelf: "flex-end", marginRight: 150}}>
             <Bookend height={100} width={100}/>
           </TouchableOpacity>

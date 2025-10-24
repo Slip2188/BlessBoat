@@ -1,3 +1,10 @@
+MOST URGENT THINGS TO DO:
+1. Improve splash screen design and implement it everywhere
+2. Check the re-renders due to useEffect after login and sign up, its a little glitchy
+3. Write in all the journal related jobs to mainStore and make the index of (main) cleaner
+4. Find a way of animating the loading of the journals, abhi they just show up adruptly
+5. I dont want to access journals every time the main page renders or focuses, I want it in async storage, and only update it when a journal is added or removed.
+
 NOTES:
 Deleting journals and deleting entries hum baad mei karenge (1:28:00 in video)
 Zustand Basics 2:35:00 in video

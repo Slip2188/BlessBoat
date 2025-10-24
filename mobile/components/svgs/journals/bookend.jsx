@@ -3,7 +3,7 @@ import Svg, { G, Path } from "react-native-svg"
 const SvgComponent = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 99.364 99.259"
+    viewBox="0 0 99.246 99.277"
     {...props}
   >
     <G
@@ -20,16 +20,19 @@ const SvgComponent = (props) => (
           strokeLinecap: "round",
           strokeLinejoin: "round",
         }}
-        transform="rotate(90.026 10.897 -40.44)"
+        transform="rotate(90.026 10.795 -40.457)"
       />
       <Path
-        d="M36.15 51.305H50.32c3.55 0 6.409 2.859 6.409 6.41v86.42c0 3.551-2.859 6.41-6.41 6.41H36.152a6.395 6.395 0 0 1-6.41-6.41v-86.42c0-3.551 2.86-6.41 6.41-6.41z"
+        d="m36.123 51.27 14.168.007a6.395 6.395 0 0 1 6.407 6.413l-.04 86.42a6.395 6.395 0 0 1-6.412 6.407l-14.168-.007a6.395 6.395 0 0 1-6.406-6.412l.04-86.421a6.395 6.395 0 0 1 6.411-6.407z"
         style={{
+          fill: "#9f8383",
+          fillOpacity: 1,
+          stroke: "none",
           strokeWidth: 5.292,
           strokeLinecap: "round",
           strokeLinejoin: "round",
         }}
-        transform="rotate(.08 36553.774 -21059.368)"
+        transform="translate(-29.657 -51.27)"
       />
     </G>
     <Path
@@ -43,7 +46,7 @@ const SvgComponent = (props) => (
         strokeLinejoin: "miter",
         strokeOpacity: 1,
       }}
-      transform="translate(-29.54 -51.356)"
+      transform="translate(-29.657 -51.27)"
     />
     <G
       stroke="none"
@@ -61,7 +64,7 @@ const SvgComponent = (props) => (
           strokeLinecap: "round",
           InkscapeStroke: "none",
         }}
-        transform="matrix(.35747 0 0 .35747 27.565 41.413)"
+        transform="matrix(.35747 0 0 .35747 27.448 41.499)"
       />
       <Path
         d="M4.906 32.803a7.079 7.079 0 0 0-7.103 7.054 7.079 7.079 0 0 0 7.054 7.104l70.237.236a7.079 7.079 0 0 0 7.103-7.054 7.079 7.079 0 0 0-7.054-7.104z"
@@ -72,7 +75,7 @@ const SvgComponent = (props) => (
           strokeLinecap: "round",
           InkscapeStroke: "none",
         }}
-        transform="matrix(.35747 0 0 .35747 27.565 41.413)"
+        transform="matrix(.35747 0 0 .35747 27.448 41.499)"
       />
     </G>
   </Svg>

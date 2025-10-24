@@ -1,6 +1,5 @@
 import styles from "../../assets/styles/(auth)/auth"
 import { TextInput, Text, View, KeyboardAvoidingView, TouchableOpacity, Platform, Alert, ActivityIndicator} from 'react-native';
-import { Link } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLOR from "../../assets/styles/colors";
 import { useFonts } from 'expo-font';
@@ -87,7 +86,7 @@ export default function LoginScreen() {
             <TouchableOpacity style={styles.loginbutton}
                 disabled={isLoading} onPress={handleLogin}>
                 {isLoading ? (
-                <ActivityIndicator color={COLOR.pink2} />
+                <ActivityIndicator color={COLOR.cream} />
                 ): (
                 <Text style={styles.buttonText}>Login</Text>
                 )}
@@ -98,7 +97,7 @@ export default function LoginScreen() {
 
         <View style={styles.footercontainer}>
           <Text style={{color:COLOR.cream, fontSize:15, fontFamily:"Ubuntu", marginRight:5}}>Don't have an account?</Text>
-          <Link href="/(auth)/signup"><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Sign Up</Text></Link>
+          <TouchableOpacity onPress={()=>{router.push("/(auth)/signup")}}><Text style={{color:COLOR.pink2, fontSize:20, fontFamily:"Ubuntu-Bold", paddingBottom:5}} >Sign Up</Text></TouchableOpacity>
         </View>
 
     </View>

@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="99.363884mm"
-   height="99.259415mm"
-   viewBox="0 0 99.363884 99.259415"
+   width="99.246086mm"
+   height="99.277168mm"
+   viewBox="0 0 99.246088 99.277169"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
    sodipodi:docname="bookend.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,22 +24,22 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.4716385"
-     inkscape:cx="100.22842"
-     inkscape:cy="176.33407"
-     inkscape:window-width="1440"
-     inkscape:window-height="779"
+     inkscape:zoom="8.783936"
+     inkscape:cx="8.139859"
+     inkscape:cy="320.52829"
+     inkscape:window-width="1472"
+     inkscape:window-height="920"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="36"
      inkscape:window-maximized="0"
-     inkscape:current-layer="g9826" />
+     inkscape:current-layer="g8229" />
   <defs
      id="defs2" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-77.096904,-155.77614)">
+     transform="translate(-77.214696,-155.69057)">
     <g
        id="g9826"
        transform="translate(47.557703,104.42017)">
@@ -52,10 +52,9 @@
            transform="rotate(90.026271)"
            d="m 129.91432,-128.96266 h 14.16784 c 3.55072,0 6.40923,2.85852 6.40923,6.40923 v 86.421135 c 0,3.550716 -2.85851,6.409234 -6.40923,6.409234 h -14.16784 c -3.55071,0 -6.40923,-2.858518 -6.40923,-6.409234 v -86.421135 c 0,-3.55071 2.85852,-6.40923 6.40923,-6.40923 z" />
         <path
-           id="rect5870-2"
-           style="stroke-width:5.292;stroke-linecap:round;stroke-linejoin:round"
-           transform="rotate(0.08046478)"
-           d="m 36.150891,51.30526 h 14.167837 c 3.550716,0 6.409234,2.858518 6.409234,6.409234 v 86.421136 c 0,3.55071 -2.858518,6.40923 -6.409234,6.40923 H 36.150891 c -3.550715,0 -6.409234,-2.85852 -6.409234,-6.40923 V 57.714494 c 0,-3.550716 2.858519,-6.409234 6.409234,-6.409234 z" />
+           id="rect5870-0"
+           style="fill:#9f8383;fill-opacity:1;stroke:none;stroke-width:5.292;stroke-linecap:round;stroke-linejoin:round"
+           d="m 36.123425,51.270903 14.16784,0.0065 c 3.55072,0.0016 6.40792,2.861458 6.40629,6.412168 l -0.0396,86.421119 c -0.002,3.55072 -2.86145,6.40793 -6.41216,6.4063 l -14.167843,-0.007 c -3.55071,-0.002 -6.407919,-2.86146 -6.406291,-6.41217 l 0.03963,-86.421127 c 0.0016,-3.55071 2.861459,-6.407919 6.412169,-6.406291 z" />
       </g>
       <path
          style="fill:#9f8383;fill-opacity:1;stroke:none;stroke-width:0.25759px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

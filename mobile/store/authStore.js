@@ -1,7 +1,6 @@
 //This file connects the backend and the frontend
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { isLoading } from "expo-font";
 import { API_URL } from "../constants/api";
 
 export const useAuthStore = create ((set) =>({
@@ -13,10 +12,10 @@ export const useAuthStore = create ((set) =>({
 
     user: null, 
     token: null,
-    isLoading: false,
+    isLoading: true,
 
     register: async (username, email, password) => {
-        set({isLoading:true})
+        set({ isLoading: true });
         try {
             const response = await fetch(`${API_URL}/auth/register`, {
                 method: "POST" ,
@@ -49,6 +48,7 @@ export const useAuthStore = create ((set) =>({
     },
 
     checkAuth: async () => {
+        set({ isLoading: true });
         try {
             const token = await AsyncStorage.getItem("token")
             const userJson = await AsyncStorage.getItem("user")
@@ -58,11 +58,13 @@ export const useAuthStore = create ((set) =>({
 
         } catch (error) {
             console.log("User check failed")
+        } finally {
+            set({isLoading:false})
         }
     },
 
     login: async (email, password) => {
-        set({isLoading:true})
+        set({ isLoading: true });
         try {
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST" ,
