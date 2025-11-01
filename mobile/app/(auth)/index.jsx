@@ -8,6 +8,7 @@ import {useEffect} from 'react';
 import { useRouter } from 'expo-router';
 import { useState} from "react"
 import { useAuthStore } from "../../store/authStore";
+import { useMainStore } from "../../store/mainStore";
 
 import Logo from "../../components/svgs/Logo"
 
@@ -25,11 +26,13 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("")
   const[showPassword, setShowPassword] = useState(false);
   
-  const {user, isLoading, login} = useAuthStore()
+  const {token, isLoading, login} = useAuthStore()
+  const {getJournals} = useMainStore()
 
   const handleLogin = async () => {
     // console.log(email, password)
     const result = await login(email, password)
+    if (token) await getJournals()
     if (!result.success) Alert.alert("Error", result.error)
   }
 

@@ -9,6 +9,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import {useEffect, useState} from 'react';
 import { useRouter } from 'expo-router';
 
+import { useMainStore } from "../../store/mainStore.js";
+
 SplashScreen.preventAutoHideAsync();
 
 
@@ -22,6 +24,7 @@ export default function NewEntryScreen() {
   });
 
   const [text, setText] = useState("");
+  const {currentJournal} = useMainStore()
 
   useEffect(() => {
     if (loaded || error) {

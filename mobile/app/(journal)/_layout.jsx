@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { Pressable } from "react-native";
 import { useFonts } from 'expo-font';
 
-
+import { useMainStore } from "../../store/mainStore.js";
 
 
 export default function TabLayout() {
@@ -14,6 +14,7 @@ export default function TabLayout() {
   const [loaded, error] = useFonts({
     'Montserrat': require('../../assets/fonts/Montserrat-Regular.ttf'),
   });
+  const {currentJournal} = useMainStore()
   return <SafeAreaProvider>
           <Tabs screenOptions={{
             tabBarActiveTintColor: COLOR.pink1,
@@ -35,7 +36,7 @@ export default function TabLayout() {
               <Tabs.Screen name="view-prev" options={{
                     title:"", 
                     tabBarIcon:({color, size})=>(<Ionicons name="albums-outline" size={size} color={color} />),
-                    headerTitle: "Daily Archive",
+                    headerTitle: `${currentJournal[1]} Archive`,
                     headerTitleStyle: {
                       fontFamily: "Montserrat", 
                       fontSize: 24, 
@@ -56,7 +57,7 @@ export default function TabLayout() {
                           />
                         </Pressable>
                       ),
-                    headerTitle: "Daily",
+                    headerTitle: `${currentJournal[1]}`,
                     headerTitleStyle: {
                       fontFamily: "Montserrat", 
                       fontSize: 24, 
