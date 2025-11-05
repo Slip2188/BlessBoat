@@ -2,12 +2,11 @@
 import { View, Text, Animated, StyleSheet, Easing } from "react-native";
 import { useEffect, useRef} from "react";
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import Logo from "./svgs/Logo";
 import COLOR from "../assets/styles/colors"
 
 
-const SplashScreenView = () => {
+const SplashScreenView = ({bgcolor=COLOR.magenta3}) => {
     const rotateAnim = useRef(new Animated.Value(0)).current
 
     const [loaded, error] = useFonts({
@@ -25,15 +24,7 @@ const SplashScreenView = () => {
       ).start();
     }, []);
   
-    useEffect(() => {
-      if (loaded || error) {
-        SplashScreen.hideAsync();
-      }
-    }, [loaded, error]);
-  
-    if (!loaded && !error) {
-      return null;
-    }
+    
 
     const rotate = rotateAnim.interpolate({
       inputRange: [0, 1],
@@ -41,7 +32,7 @@ const SplashScreenView = () => {
     });
   
     return (
-      <View style={styles.splashContainer}>
+      <View style={[styles.splashContainer, {backgroundColor: bgcolor}]}>
           <Animated.View style={{ transform: [{ rotate }] }}>
             <Logo
               style={{ width: 150, height: 150 }}
@@ -56,12 +47,11 @@ const SplashScreenView = () => {
 const styles = StyleSheet.create({
 splashContainer: {
     flex: 1,
-    backgroundColor: COLOR.magenta3, // magenta3
     justifyContent: "center",
     alignItems: "center",
 },
 splashText: {
-    color: COLOR.cream, // cream
+    color: COLOR.cream, 
     fontSize: 24,
     marginTop: 50,
     fontFamily: "Ubuntu",

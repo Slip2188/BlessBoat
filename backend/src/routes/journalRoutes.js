@@ -56,27 +56,26 @@ router.delete("/:id", protectRoute, async (req, res)=>{
     }
 })
 
-/*
 
 // Creates new entry in current journal 
 router.post("/entry", protectRoute, async (req, res) => {
     // All this is assuming that the request will have the current journal in it for us to access 
     try {
-        const {journalName, entryTitle, entryBody} = req.body;
-        if (!journalName) {
+        const {journalID, entryTitle, entryBody} = req.body;
+        if (!journalID) {
             return res.status(400).json({message: "Select journal to write entry in!"});
         }
         if (!entryTitle || !entryBody) {
             return res.status(400).json({message: "Write something in your entry!"});
         }
 
-        const currentJournal = await Journal.find({name: journalName, author: req.user._id}) 
+        const currentJournal = await Journal.find({name: journalID, author: req.user._id}) 
         if (!currentJournal) {
             return res.status(400).json({message: "Journal not found!"});
         }
         
         // ADD THE NEW ENTRY TO THE JOURNAL (Error aaya to idhar hi aaega)
-        sentiment = Math.floor(Math.random() * max) // Temp
+        const sentiment = Math.floor(Math.random() * max) // Temp
         const newEntry = {
             title: entryTitle,
             body: entryBody,
@@ -100,7 +99,7 @@ router.post("/entry", protectRoute, async (req, res) => {
 
 
 // Gets all the entries of a journal
-router.get('/', protectRoute, async (req, res)=> {
+router.get('/entry', protectRoute, async (req, res)=> {
 
     // example call from react native - frontend
     // const response = await fetch ("http://localhost:3000/api/journal?page=1&limit=5");
@@ -140,8 +139,6 @@ router.get('/', protectRoute, async (req, res)=> {
     }
 })
 
-
-*/
 
 
 export default router;

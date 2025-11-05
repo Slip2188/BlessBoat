@@ -36,7 +36,7 @@ export const useMainStore = create((set) => ({
     const token = await AsyncStorage.getItem("token");
     if (!token) return;
 
-    set({ loading: true });
+    set({ loading: true, journalsLoaded: false });
     try {
       const response = await fetch(`${API_URL}/journal`, {
         method: "POST",
@@ -61,7 +61,7 @@ export const useMainStore = create((set) => ({
       console.error("Error adding journal:", error);
       return false;
     } finally {
-      set({ loading: false });
+      set({ loading: false, journalsLoaded: true });
     }
   },
 

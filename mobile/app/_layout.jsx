@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useAuthStore } from "../store/authStore";
+import { useMainStore } from "../store/mainStore";
 
 import SplashScreenView from "../components/splash-screen"
 
@@ -8,6 +9,7 @@ export default function RootLayout() {
   const router = useRouter();
   const segments = useSegments();
   const { checkAuth, user, token, isLoading } = useAuthStore();
+  // const {journalsLoaded, getJournals} = useMainStore();
 
   const [showSplash, setShowSplash] = useState(false);
 
@@ -29,11 +31,11 @@ export default function RootLayout() {
       setTimeout(() => {
         setShowSplash(false);
         router.replace("/(main)");
-      }, 1000); // 1.5 seconds splash
+      }); // 1.5 seconds splash
     }
   }, [token, segments, isLoading]);
 
-  if (isLoading || showSplash) {
+  if (isLoading && showSplash) {
     return <SplashScreenView />;
   }
 
